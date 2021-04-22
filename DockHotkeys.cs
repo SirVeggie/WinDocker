@@ -54,7 +54,6 @@ namespace WinDocker {
             await gui.LaunchAndWait();
             gui.Window.SetAlwaysOnTop(true);
             gui.Window.MoveTop();
-            gui.Window.Activate(WinActivateMode.Soft);
 
             key = (await KeyHandler.WaitKey(Filter)).Result.Key;
             gui.Close();

@@ -133,9 +133,15 @@ namespace Apprentice.Personal.Tools {
 
         private static async Task<EdgeType> GetInput() {
             Notification("Press arrow key to set hide direction");
+            var gui = new MessageBox("Window Docker", "Press WASD or arrow keys to set direction");
+            await gui.LaunchAndWait();
+            gui.Window.SetAlwaysOnTop(true);
+            gui.Window.MoveTop();
+
             var key = await KeyHandler.WaitKeyDown(new Key[9] { Key.Left, Key.Right, Key.Up, Key.Down, Key.W, Key.A, Key.S, Key.D, Key.Escape }, block: true);
             var dir = GetDirection(key);
 
+            gui.Close();
             if (dir.IsNone())
                 Notification("Window hiding cancelled");
             return dir;
